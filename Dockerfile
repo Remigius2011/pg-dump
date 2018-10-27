@@ -14,7 +14,7 @@
 # S3_SECRET_KEY the s3 secret key
 # S3_BUCKET the s3 bucket
 
-FROM postgres:9-alpine
+FROM postgres:10-alpine
 
 # defaults for some environment variables
 
