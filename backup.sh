@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. /usr/bin/setpwd.sh
+
 export DUMP_FILE="$BACKUP_DIR/$PG_SCHEMA-$DB_ENV-$(date +"%F-%H%M%S").dump"
 
 if [ ! -d "$BACKUP_DIR" ]; then

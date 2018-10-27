@@ -26,8 +26,9 @@ ENV S3_PROTOCOL https
 ENV S3_BUCKET pgbackup
 
 COPY backup.sh /usr/bin/backup.sh
+COPY setpwd.sh /usr/bin/setpwd.sh
 
-RUN chmod +x /usr/bin/backup.sh
+RUN chmod +x /usr/bin/backup.sh && chmod +x /usr/bin/setpwd.sh
 
 # add mc (minio client)
 # see also https://github.com/minio/mc/blob/master/Dockerfile.release
@@ -38,4 +39,4 @@ RUN \
     curl https://dl.minio.io/client/mc/release/linux-amd64/mc > /usr/bin/mc && \
     chmod +x /usr/bin/mc && apk del .build-deps
 
-CMD ["/bin/sh", "-c" , "echo $PG_HOST:$PG_PORT:$PG_DB:$PG_USER:$PG_PASSWORD > /root/.pgpass && chmod 0600 /root/.pgpass && . /usr/bin/backup.sh" ]
+CMD ["/bin/sh", "-c" , ". /usr/bin/backup.sh" ]
