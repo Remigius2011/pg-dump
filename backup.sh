@@ -11,8 +11,8 @@ if [ ! -d "$BACKUP_DIR" ]; then
 
 fi
 
-echo "pg_dump -v -Fc --no-acl --no-owner -h $PG_HOST -p $PG_PORT -n $PG_SCHEMA -U $PG_USER -w $PG_DB > $DUMP_FILE"
-pg_dump -v -Fc --no-acl --no-owner -h $PG_HOST -p $PG_PORT -n $PG_SCHEMA -U $PG_USER -w $PG_DB > $DUMP_FILE
+echo "pg_dump -v -w -Fc -h $PG_HOST -p $PG_PORT -n $PG_SCHEMA -U $PG_USER $PG_DB -f $DUMP_FILE"
+pg_dump -v -w -Fc -h $PG_HOST -p $PG_PORT -n $PG_SCHEMA -U $PG_USER $PG_DB -f $DUMP_FILE
 
 if [ -n "S3_HOST" ]; then
 

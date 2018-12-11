@@ -40,5 +40,10 @@ for recurrent execution, e.g. to create off-site backups of a popstgresql databa
 usage
 -----
 
-# run e.g. as
-# docker run -it --rm -e PG_HOST=<postgresql host> -e PG_PORT=<postgresql port> -e PG_SCHEMA=<schema> -e PG_DB=<database> -e PG_PASSWORD=<postgres password> -e S3_HOST=<s3 host> -e S3_ACCESS_KEY=<s3 access key> -e S3_SECRET_KEY=<s3 secret key> remigius65/pg-dump
+run e.g. as
+
+```
+$ docker run -it --rm -e PG_HOST=<postgresql host> -e PG_PORT=<postgresql port> -e PG_SCHEMA=<schema> -e PG_DB=<database> -e PG_PASSWORD=<postgres password> -e S3_HOST=<s3 host> -e S3_ACCESS_KEY=<s3 access key> -e S3_SECRET_KEY=<s3 secret key> remigius65/pg-dump
+```
+
+to restore a backup, you can run it by invoking the script `restore.sh` which takes the full backup timestamp as a parameter.

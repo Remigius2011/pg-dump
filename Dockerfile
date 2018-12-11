@@ -26,9 +26,10 @@ ENV S3_PROTOCOL https
 ENV S3_BUCKET pgbackup
 
 COPY backup.sh /usr/bin/backup.sh
+COPY restore.sh /usr/bin/restore.sh
 COPY setpwd.sh /usr/bin/setpwd.sh
 
-RUN chmod +x /usr/bin/backup.sh && chmod +x /usr/bin/setpwd.sh
+RUN chmod +x /usr/bin/backup.sh && chmod +x /usr/bin/restore.sh && chmod +x /usr/bin/setpwd.sh
 
 # add mc (minio client)
 # see also https://github.com/minio/mc/blob/master/Dockerfile.release
