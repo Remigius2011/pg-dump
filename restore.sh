@@ -4,8 +4,6 @@
 
 . /usr/bin/setpwd.sh
 
-echo $PG_HOST:$PG_PORT:$PG_DB:$PG_USER:$PG_PASSWORD > /root/.pgpass && chmod 0600 /root/.pgpass
-
 export DUMP_FILE="$BACKUP_DIR/$PG_SCHEMA-$DB_ENV-$1.dump"
 
 if [ ! -d "$BACKUP_DIR" ]; then
