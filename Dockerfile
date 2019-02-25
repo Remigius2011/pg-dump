@@ -31,10 +31,12 @@ COPY setpwd.sh /usr/bin/setpwd.sh
 
 RUN chmod +x /usr/bin/backup.sh && chmod +x /usr/bin/restore.sh && chmod +x /usr/bin/setpwd.sh
 
+# add coreutils for date -d options
 # add mc (minio client)
 # see also https://github.com/minio/mc/blob/master/Dockerfile.release
 
 RUN \
+    apk add --no-cache coreutils && \
     apk add --no-cache ca-certificates && \
     apk add --no-cache --virtual .build-deps curl && \
     curl https://dl.minio.io/client/mc/release/linux-amd64/mc > /usr/bin/mc && \
