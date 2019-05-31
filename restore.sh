@@ -15,7 +15,7 @@ fi
 
 if [ -n "S3_HOST" ]; then
 
-  export MC_HOSTS_store="$S3_PROTOCOL://$S3_ACCESS_KEY:$S3_SECRET_KEY@$S3_HOST"
+  export MC_HOST_store="$S3_PROTOCOL://$S3_ACCESS_KEY:$S3_SECRET_KEY@$S3_HOST"
   echo "mc cp store/$S3_BUCKET/$PG_SCHEMA-$DB_ENV-$1.dump $BACKUP_DIR"
   mc cp store/$S3_BUCKET/$PG_SCHEMA-$DB_ENV-$1.dump $BACKUP_DIR
 

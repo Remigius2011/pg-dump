@@ -16,7 +16,7 @@ pg_dump -v -w -Fc -h $PG_HOST -p $PG_PORT -n $PG_SCHEMA -U $PG_USER $PG_DB -f $D
 
 if [ -n "S3_HOST" ]; then
 
-  export MC_HOSTS_store="$S3_PROTOCOL://$S3_ACCESS_KEY:$S3_SECRET_KEY@$S3_HOST"
+  export MC_HOST_store="$S3_PROTOCOL://$S3_ACCESS_KEY:$S3_SECRET_KEY@$S3_HOST"
   echo "mc cp $DUMP_FILE store/$S3_BUCKET"
   mc cp $DUMP_FILE store/$S3_BUCKET
 
