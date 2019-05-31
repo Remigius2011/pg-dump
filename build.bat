@@ -2,7 +2,7 @@
 
 set DOCKER_REPO=remigius65
 set IMAGE_NAME=pg-dump
-set VERSION=0.0.4
+set VERSION=0.0.5
 
 @FOR /f %%i IN ('git rev-parse --short HEAD') DO SET GIT_COMMIT_HASH=%%i
 
