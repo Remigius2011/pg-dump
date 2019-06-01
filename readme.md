@@ -26,7 +26,7 @@ the following environment vartiables can be used:
 | S3_HOST | | the s3 host (and port) |
 | S3_ACCESS_KEY | | the s3 access key |
 | S3_SECRET_KEY | | the s3 secret key |
-| S3_BUCKET the | `pgbackup` | s3 bucket |
+| S3_BUCKET | `pgbackup` | the s3 bucket |
 
 if necessary, an http proxy can be defined using the environment variables `HTTP_PROXY` and/or `HTTPS_PROXY`.
 
