@@ -25,7 +25,7 @@ if [ -n "S3_HOST" ]; then
     BACKLOG_FILE="$PG_SCHEMA-$DB_ENV-$(date --date="-$BACKLOG day" +"%F-%H%M%S").dump"
     echo "deleting files before $BACKLOG_FILE"
 
-    for FILE in $(mc ls store/$S3_BUCKET | grep "$PG_SCHEMA-$DB_ENV" | cut -d' ' -f6-); do 
+    for FILE in $(mc ls store/$S3_BUCKET | grep "$PG_SCHEMA-$DB_ENV-" | cut -d' ' -f7-); do 
 
       if [ "$FILE" \< "$BACKLOG_FILE" ]; then
 
@@ -48,7 +48,7 @@ if [ -n "$S3_SYNC_HOST" ]; then
 
   fi
 
-  export MC_HOSTS_sync="$S3_SYNC_PROTOCOL://$S3_SYNC_ACCESS_KEY:$S3_SYNC_SECRET_KEY@$S3_SYNC_HOST"
+  export MC_HOST_sync="$S3_SYNC_PROTOCOL://$S3_SYNC_ACCESS_KEY:$S3_SYNC_SECRET_KEY@$S3_SYNC_HOST"
   echo "mc cp $DUMP_FILE sync/$S3_BUCKET"
   mc cp $DUMP_FILE sync/$S3_BUCKET
 
@@ -57,7 +57,7 @@ if [ -n "$S3_SYNC_HOST" ]; then
     BACKLOG_FILE="$PG_SCHEMA-$DB_ENV-$(date --date="-$BACKLOG day" +"%F-%H%M%S").dump"
     echo "deleting files before $BACKLOG_FILE"
 
-    for FILE in $(mc ls sync/$S3_BUCKET | grep "$PG_SCHEMA-$DB_ENV" | cut -d' ' -f6-); do 
+    for FILE in $(mc ls sync/$S3_BUCKET | grep "$PG_SCHEMA-$DB_ENV-" | cut -d' ' -f7-); do 
 
       if [ "$FILE" \< "$BACKLOG_FILE" ]; then
 
