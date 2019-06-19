@@ -33,9 +33,9 @@ fi
 
 if [ "$2" = "sync" ]; then
   if [ -n "$S3_SYNC_HOST" ]; then
-    export MC_HOST_store="$S3_SYNC_PROTOCOL://$S3_SYNC_ACCESS_KEY:$S3_SYNC_SECRET_KEY@$S3_SYNC_HOST"
-    echo "mc cp store/$S3_SYNC_BUCKET/$PG_SCHEMA-$DB_ENV-$1.dump $BACKUP_DIR from $S3_SYNC_HOST"
-    mc cp store/$S3_SYNC_BUCKET/$PG_SCHEMA-$DB_ENV-$1.dump $BACKUP_DIR
+    export MC_HOST_sync="$S3_SYNC_PROTOCOL://$S3_SYNC_ACCESS_KEY:$S3_SYNC_SECRET_KEY@$S3_SYNC_HOST"
+    echo "mc cp sync/$S3_SYNC_BUCKET/$PG_SCHEMA-$DB_ENV-$1.dump $BACKUP_DIR from $S3_SYNC_HOST"
+    mc cp sync/$S3_SYNC_BUCKET/$PG_SCHEMA-$DB_ENV-$1.dump $BACKUP_DIR
   fi
 else
   if [ -n "$S3_HOST" ]; then
