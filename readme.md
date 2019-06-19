@@ -27,6 +27,11 @@ the following environment vartiables can be used:
 | S3_ACCESS_KEY | | the s3 access key |
 | S3_SECRET_KEY | | the s3 secret key |
 | S3_BUCKET | `pgbackup` | the s3 bucket |
+| S3_SYNC_PROTOCOL | `https` | protocol for sync copy - http or https |
+| S3_SYNC_HOST | | the s3 host for sync copy |
+| S3_SYNC_ACCESS_KEY | | the s3 access key for sync copy |
+| S3_SYNC_SECRET_KEY | | the s3 secret key for sync copy |
+| S3_SYNC_BUCKET | `$S3_BUCKET` | the s3 bucket for sync copy |
 
 if necessary, an http proxy can be defined using the environment variables `HTTP_PROXY` and/or `HTTPS_PROXY`.
 
@@ -37,6 +42,9 @@ beforehand.
 the image can be used to run a container once, in which case a single dump is created. also it can be deployed as a k8s `CronJob`
 for recurrent execution, e.g. to create off-site backups of a popstgresql database in regular time intervals.
 
+if a second copy is desired (e.g. for an additional off-site backup), a second S3 store can bve defined using the environment variables
+`S3_SYNC_PROTOCOL` (optional), `S3_SYNC_HOST`, `S3_SYNC_ACCESS_KEY`, `S3_SYNC_SECRET_KEY` and `S3_SYNC_BUCKET` (optional).
+
 usage
 -----
 
@@ -46,4 +54,5 @@ run e.g. as
 $ docker run -it --rm -e PG_HOST=<postgresql host> -e PG_PORT=<postgresql port> -e PG_SCHEMA=<schema> -e PG_DB=<database> -e PG_PASSWORD=<postgres password> -e S3_HOST=<s3 host> -e S3_ACCESS_KEY=<s3 access key> -e S3_SECRET_KEY=<s3 secret key> remigius65/pg-dump
 ```
 
-to restore a backup, you can run it by invoking the script `restore.sh` which takes the full backup timestamp as a parameter.
+to restore a backup, you can run it by invoking the script `restore.sh` which takes the full backup timestamp as a parameter. if `sync`is added as a second parameter,
+the backup file is taken from the sync copy (i.e. using environment variables `S3_SYNC_*`).
